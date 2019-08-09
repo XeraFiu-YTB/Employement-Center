@@ -5,16 +5,9 @@ const ffmpeg = require('ffmpeg');
 const bot = new Discord.Client();
 
 
-bot.on('messageReactionAdd', (reaction, user) => {
-	console.log(`${user.username} a fait "${reaction.emoji.name}" dans ${reaction.channel}`);
-});
+
 
 bot.commands = new Discord.Collection();
-bot.on("guildCreate", guild => {
-    // This event triggers when the bot joins a guild.
-    console.log(`Ce serveur à ${guild.memberCount} membres!`);
-    bot.user.setActivity(`${bot.guilds.size} Serveurs !`, { type: 'WATCHING'});
-});
 
 fs.readdir('./commands/', (err, files) => {
     if(err) console.log(err);
@@ -57,9 +50,9 @@ bot.on('message', async message => {
 bot.on('message', (message) => {
     var a = 1
     let channelLink = message.channel.id //channel ou le lien vient d'etre écrit
-    let channelAcceptedID = [609340258558935040, 609339643464253441]
-    console.log(`Il y a ${channelAcceptedID.length} salons qui sont acceptés`)
-    if(!(message.member == null || channelLink == channelAcceptedID)){ //si c'est un modo le lien n'est pas sup
+    //let channelAcceptedID = [609340258558935040, 609339643464253441]
+    
+    if(!(message.member == null || message.member.hasPermission('MANAGE_MESSAGES') || channelLink == '609340258558935040' || channelLink =='609339643464253441')){ //si c'est un modo le lien n'est pas sup
               
 
         if (message.content.includes("https://")) {
@@ -100,23 +93,12 @@ bot.on('message', (message) => {
     }
 });
 
-function couleur() {
-    return "#" + Math.floor(Math.random()*16777215).toString(16);
-}
+
 bot.on("guildMemberAdd", (member) => {
 
-   member.sendMessage("Bienvenue sur Fortool voici 1 minute de vidéo pour vous présenter le serveur: https://www.youtube.com/watch?v=3E-_CyzKVv4&feature=youtu.be")
-    
-    let botsRole = member.guild.roles.find('id', '545386430801772603')
-    botsRole.setColor(couleur())
-      //role.get(545386430801772603).setColor(color())
-      //message.guild.roles.find('name', 'Bots').setColor(color())
+   member.sendMessage("Bienvenue sur **Employement Center** ici tu peux chercher du **Staff** compétent qui correspond à tes ambitions !")
     
     
-  //  let role = member.guild.roles.find(x => x.name === "Joueur_Commun")
-    //member.addRole(role.id)
-    //guild.channels.find("id", "591938889132933121").setName(`Membres : ${guild.memberCount}`);
-    //let channel = client.channels.get('591938889132933121');
     
 });
 
