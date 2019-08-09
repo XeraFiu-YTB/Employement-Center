@@ -10,7 +10,6 @@ let totalMemberON = message.guild.members.filter(m => m.presence.status === 'onl
 let costatsEmbed = new Discord.RichEmbed()
         .setDescription('Informations sur le serveur')
         .setColor('#dc143c')
-        .setThumbnail(servIcon)
         .addField('Total', totalMember)
         .addField('Online', totalMemberON)
         .addField('Jaune', totalMemberAWAY)
