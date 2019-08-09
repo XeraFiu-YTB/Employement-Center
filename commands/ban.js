@@ -33,11 +33,11 @@ if(!message.member.hasPermission("MANAGE_MESSAGES")){
   let noban = 2; // number of thumbsdown reactions you need
   let ban = 5;
   if (reaction.emoji.name == '❌' && reaction.count >= noban) {
-  	banChannel.send(`L'utilisateur ne sera pas Ban, ${reaction.count} personnes s'opposent !`)
+  	return banChannel.send(`L'utilisateur ne sera pas Ban, ${reaction.count} personnes s'opposent !`)
   }
   if (reaction.emoji.name == '✅' && reaction.count >= noban) {
   	banChannel.send(`L'utilisateur ${banUser} est ban, ${reaction.count} personnes sont en accord !`)
- 	message.guild.member(banUser).ban("Désolé, Nous nous sommes concertés et nous avons choisis de te Ban, Bonne Journée");
+ 	return message.guild.member(banUser).ban("Désolé, Nous nous sommes concertés et nous avons choisis de te Ban, Bonne Journée");
 }
 });
 
